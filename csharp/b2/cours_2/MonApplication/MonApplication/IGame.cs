@@ -6,8 +6,6 @@
 
         void LancerJeu();
 
-        void GetStatistiques();
-
-        void GetStatistiques(System.DateTime dateMin);
+        void AfficherStatistiques();
     }
 }

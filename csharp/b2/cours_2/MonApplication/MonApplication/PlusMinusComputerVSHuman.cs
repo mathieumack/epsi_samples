@@ -5,37 +5,39 @@ namespace MonApplication
 {
     public class PlusMoinsGameVersionUtilisateur : IGame
     {
-        public string NomJeu { get; internal set; }
-        public string Toto { get; set; }
+        public string NomJeu
+        {
+            get
+            {
+                return "A toi de trouver !";
+            }
+        }
 
-        private int nombreParties { get; set; }
-        private System.Collections.ArrayList nombreDeCoupsParPartie { get; set; }
+        private double nombreParties;
+        private ArrayList statistiquesParPartie;
 
         public void LancerJeu()
         {
-            nombreDeCoupsParPartie = new System.Collections.ArrayList();
-            nombreParties = 0;
-            while (true)
+            Console.WriteLine("Bonjour, on va démarre");
+
+            statistiquesParPartie = new ArrayList();
+            do
             {
-                nombreParties++;
-
-                int nombreDecoups = 0;
-
-                #region Code du jeu
-                Console.WriteLine("Bonjour, on va démarre");
-
                 Random randomValue = new Random();
                 int valeurATrouver = randomValue.Next(0, 10001);
 
                 string valeurSaisie;
                 do
                 {
-                    nombreDecoups++;
+                    int nbCoups = 0;
+
                     Console.WriteLine("Entrez une valeur : (tapez exit pour arréter de jouer)");
                     valeurSaisie = Console.ReadLine();
 
                     if (valeurSaisie != "exit")
                     {
+                        nbCoups++;
+
                         int valeurEntiere = int.Parse(valeurSaisie);
                         if (valeurEntiere > valeurATrouver)
                             Console.WriteLine("C'est moins.");
@@ -45,30 +47,31 @@ namespace MonApplication
                 }
                 while (valeurSaisie != "exit" && valeurSaisie != valeurATrouver.ToString());
 
-
                 if (valeurSaisie == valeurATrouver.ToString())
                     Console.WriteLine("Bravo tu as trouvé !");
 
-                #endregion
+                AfficherStatistiques();
 
-                nombreDeCoupsParPartie.Add(nombreDecoups);
-
-                GetStatistiques();
+                Console.WriteLine("Rejouer ? (oui/non)");
             }
+            while (Console.ReadLine() == "oui");
         }
 
-        public void GetStatistiques()
+        public void AfficherStatistiques()
         {
             Console.WriteLine("Nombre de parties : " + nombreParties);
+            Console.WriteLine("------------------------");
+            double nombreTotalCoups = 0;
+            for (int i = 0; i < statistiquesParPartie.Count; i++)
+            {
+                nombreTotalCoups += (int)statistiquesParPartie[i];
+                Console.WriteLine("Partie " + i + " : " + statistiquesParPartie[i] + " coup(s)");
+            }
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Nombre de coups moyen : " + (nombreTotalCoups / nombreParties));
         }
-
-        public void GetStatistiques(System.DateTime dateMin)
-        {
-            Console.WriteLine("Statistiques");
-        }
-        
     }
-    
+
     public class PlusMoinsGameVersionProgramme : IGame
     {
         public string NomJeu
@@ -79,17 +82,17 @@ namespace MonApplication
             }
         }
 
-        public void GetStatistiques()
-        {
-            Console.WriteLine("0 parties.");
-        }
+        private double nombreParties;
+        private ArrayList statistiquesParPartie;
 
         public void LancerJeu()
         {
-            nombreParties = 0;
-            while (true)
+            statistiquesParPartie = new ArrayList();
+            do
             {
                 nombreParties++;
+
+                int nbCoups = 0;
 
                 Console.WriteLine("Bonjour, on va démarrer. Choisissez un nombre entre 0 et 10000.");
                 Console.WriteLine("Tapez sur la touche 'entrer' quand vous aurez choisi.");
@@ -101,6 +104,7 @@ namespace MonApplication
                 string valeur;
                 do
                 {
+                    nbCoups++;
                     int nouvelleProposition = (valeurMin + valeurMax) / 2;
                     Console.WriteLine("Est-ce " + nouvelleProposition + " ?");
                     valeur = Console.ReadLine();
@@ -115,9 +119,31 @@ namespace MonApplication
                 }
                 while (valeur != "exit" && valeur != "=");
 
+                statistiquesParPartie.Add(nbCoups);
+
                 if (valeur == "=")
                     Console.WriteLine("Yes ! Je suis trop fort.");
+
+                AfficherStatistiques();
+
+                Console.WriteLine("Rejouer ? (oui/non)");
             }
+            while (Console.ReadLine() == "oui");
         }
+
+        public void AfficherStatistiques()
+        {
+            Console.WriteLine("Nombre de parties : " + nombreParties);
+            Console.WriteLine("------------------------");
+            double nombreTotalCoups = 0;
+            for(int i = 0; i < statistiquesParPartie.Count; i++)
+            {
+                nombreTotalCoups += (int)statistiquesParPartie[i];
+                Console.WriteLine("Partie " + i + " : " + statistiquesParPartie[i] + " coup(s)");
+            }
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Nombre de coups moyen : " + (nombreTotalCoups/nombreParties));
+        }
+
     }
-} 
+}

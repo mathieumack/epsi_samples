@@ -6,7 +6,7 @@ namespace MonApplication
     {
         static void Main(string[] args)
         {
-            IGame monJeuUtilisateur = new PlusMoinsGameVersionUtilisateur();
+            IGame monJeuUtilisateur = new PlusMoinsGameVersionUtilisateur("Jeu 1");
             IGame monJeuProgramme = new PlusMoinsGameVersionProgramme();
 
             Console.WriteLine("Tapez 1 pour jouer à : " + monJeuUtilisateur.NomJeu);
@@ -21,7 +21,7 @@ namespace MonApplication
                 monJeuProgramme.LancerJeu();
             else
                 Console.WriteLine("Ok, bye !");
-            
+
             Console.ReadLine();
         }
     }
