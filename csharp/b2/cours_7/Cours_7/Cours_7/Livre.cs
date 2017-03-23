@@ -2,7 +2,7 @@
 
 namespace Cours_7
 {
-    internal class Livre
+    public class Livre
     {
         /// <summary>
         /// Identifiant unique
@@ -13,6 +13,11 @@ namespace Cours_7
         /// Titre du livre
         /// </summary>
         public string Titre { get; set; }
+
+        /// <summary>
+        /// Indique si un livre est réservable
+        /// </summary>
+        public bool IsReservable { get; set; }
 
         /// <summary>
         /// Date de disponibilité

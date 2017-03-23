@@ -41,8 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bibliotheque.cs" />
+    <Compile Include="Emprunt.cs" />
+    <Compile Include="IBibliotheque.cs" />
     <Compile Include="Livre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilisateur.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
