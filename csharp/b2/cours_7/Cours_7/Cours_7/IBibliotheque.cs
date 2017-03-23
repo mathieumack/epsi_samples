@@ -16,16 +16,16 @@ namespace Cours_7
         /// Tente de réserver un livre à une date donnée
         /// </summary>
         /// <param name="livreId"></param>
+        /// <param name="utilisateurId"></param>
         /// <param name="dateReservation"></param>
         /// <returns>Vrai si la réservation a réussi, faux si la rés ne peut pas se faire</returns>
-        bool ReserveLivre(int livreId, DateTime dateReservation);
+        bool ReserveLivre(int livreId, int utilisateurId, DateTime dateReservation);
 
         /// <summary>
         /// Permet d'initialiser la bibliothèque
         /// </summary>
         /// <param name="livres"></param>
-        /// <param name="utilisateurId"></param>
         /// <param name="utilisateurs"></param>
-        void InitDatas(List<Livre> livres, int utilisateurId, List<Utilisateur> utilisateurs);
+        void InitDatas(List<Livre> livres, List<Utilisateur> utilisateurs);
     }
 }

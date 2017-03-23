@@ -15,22 +15,28 @@ namespace Cours_7.Unit.Tests
             bibliotheque = new Bibliotheque();
 
             List<Livre> livres = new List<Livre>();
-            livres.Add(new Livre()
+            for (int i = 1; i < 10; i++)
             {
-                Id = 1,
-                Titre = "Titre 1",
-                IsReservable = true,
-                DateDisponibilite = null
-            });
-            livres.Add(new Livre()
-            {
-                Id = 2,
-                Titre = "Titre 1",
-                IsReservable = false,
-                DateDisponibilite = null
-            });
+                livres.Add(new Livre()
+                {
+                    Id = i,
+                    Titre = "Titre 1",
+                    IsReservable = i < 8,
+                    DateDisponibilite = null
+                });
+            }
 
-            bibliotheque.InitDatas(livres, new List<Utilisateur>());
+            List<Utilisateur> utilisateurs = new List<Utilisateur>();
+            for (int i = 1; i < 10; i++)
+            {
+                utilisateurs.Add(new Utilisateur()
+                {
+                    Id = i,
+                    Nom = "Monsieur " + i.ToString()
+                });
+            }
+
+            bibliotheque.InitDatas(livres, utilisateurs);
         }
 
         [TestMethod]
@@ -44,12 +50,28 @@ namespace Cours_7.Unit.Tests
         }
 
         [TestMethod]
-        public void ReserveLivre()
+        public void ReserveLivre_meme_livre_meme_date()
         {
-            bool canReserver = bibliotheque.ReserveLivre(2, new DateTime(2017, 2, 1));
+            bool canReserver = bibliotheque.ReserveLivre(2, 1, new DateTime(2017, 2, 1));
             Assert.IsTrue(canReserver);
 
-            canReserver = bibliotheque.ReserveLivre(2, new DateTime(2017, 2, 1));
+            canReserver = bibliotheque.ReserveLivre(2, 1, new DateTime(2017, 2, 1));
+            Assert.IsFalse(canReserver);
+        }
+
+        [TestMethod]
+        public void ReserveLivre_3fois_par_utilisateur()
+        {
+            bool canReserver = bibliotheque.ReserveLivre(1, 1, new DateTime(2017, 2, 1));
+            Assert.IsTrue(canReserver);
+
+            canReserver = bibliotheque.ReserveLivre(2, 1, new DateTime(2017, 2, 1));
+            Assert.IsTrue(canReserver);
+
+            canReserver = bibliotheque.ReserveLivre(3, 1, new DateTime(2017, 2, 1));
+            Assert.IsTrue(canReserver);
+
+            canReserver = bibliotheque.ReserveLivre(4, 1, new DateTime(2017, 2, 1));
             Assert.IsFalse(canReserver);
         }
     }
