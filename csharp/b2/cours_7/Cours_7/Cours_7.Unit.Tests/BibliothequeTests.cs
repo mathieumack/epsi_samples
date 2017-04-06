@@ -13,7 +13,7 @@ namespace Cours_7.Unit.Tests
         public void TestInit()
         {
             bibliotheque = new Bibliotheque();
-
+            
             // On initialize avec des données fake :
             bibliotheque.InitDatas(GetFakeLivres(), GetFakeUtilisateurs());
         }

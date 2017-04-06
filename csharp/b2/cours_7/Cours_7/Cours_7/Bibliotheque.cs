@@ -50,7 +50,7 @@ namespace Cours_7
             InitUtilisateurs(utilisateurs);
         }
 
-        private void InitLivres(List<Livre> livres)
+        internal void InitLivres(List<Livre> livres)
         {
             if (livres == null)
                 throw new ArgumentNullException();
