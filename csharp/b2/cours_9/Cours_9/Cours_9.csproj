@@ -45,6 +45,7 @@
     <Compile Include="FileContent.cs" />
     <Compile Include="FileContentInfos.cs" />
     <Compile Include="FileDownloader.cs" />
+    <Compile Include="IUserInteract.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

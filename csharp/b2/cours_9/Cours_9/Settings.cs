@@ -8,10 +8,10 @@ namespace Cours_9
 {
     public class Settings
     {
-        private UserInteract userInteractObject;
+        private IUserInteract userInteractObject;
         public string SavePath { get; internal set; }
 
-        public Settings(UserInteract userInteract)
+        public Settings(IUserInteract userInteract)
         {
             userInteractObject = userInteract;
         }

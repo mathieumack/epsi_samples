@@ -10,11 +10,11 @@ namespace Cours_9
     {
 
         private Settings settings;
-        private UserInteract userInteract;
+        private IUserInteract iUserInteract;
 
-        public void Start()
+        public void Start(IUserInteract userInteract)
         {
-            userInteract = new UserInteract();
+            iUserInteract = userInteract;
             settings = new Settings(userInteract);
 
             UpdateSaveFolderPath();
