@@ -4,6 +4,12 @@ namespace CommandsService
 {
     public class CdCommand : ICommand
     {
+        private EnvironnementExec envExecution;
+        public CdCommand(EnvironnementExec envExec)
+        {
+            envExecution = envExec;
+        }
+
         public void Execute()
         {
             throw new NotImplementedException();
@@ -11,7 +17,7 @@ namespace CommandsService
 
         public void Execute(string args)
         {
-            throw new NotImplementedException();
+            envExecution.SetPath("todo");
         }
     }
 }

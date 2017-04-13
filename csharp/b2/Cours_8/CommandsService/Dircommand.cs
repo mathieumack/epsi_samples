@@ -8,14 +8,25 @@ namespace CommandsService
 {
     public class DirCommand : ICommand
     {
+        private EnvironnementExec envExecution;
+        public DirCommand(EnvironnementExec envExec)
+        {
+            envExecution = envExec;
+        }
+
         public void Execute()
         {
-            throw new NotImplementedException();
+            InternalExecute();
         }
 
         public void Execute(string args)
         {
-            throw new NotImplementedException();
+            InternalExecute();
+        }
+
+        public int InternalExecute()
+        {
+            string currentPath = envExecution.GetPath();
         }
     }
 }

@@ -6,8 +6,8 @@ namespace Cours_7
 {
     public class Bibliotheque : IBibliotheque
     {
-        private int nbJoursResaParLivre = 2;
-        private int nbResaParUtilisateursMax = 3;
+        private readonly int nbJoursResaParLivre;
+        private readonly int nbResaParUtilisateursMax;
 
         private List<Livre> Livres { get; set; }
 
@@ -19,6 +19,9 @@ namespace Cours_7
 
         public Bibliotheque()
         {
+            nbJoursResaParLivre = 2;
+            nbResaParUtilisateursMax = 3;
+
             InitDatas();
         }
 
