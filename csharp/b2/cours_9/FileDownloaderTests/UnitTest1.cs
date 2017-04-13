@@ -11,7 +11,7 @@ namespace FileDownloaderTests
         public void TestMethod1()
         {
             FileDownloader downloader = new FileDownloader();
-            downloader.Start();
+            downloader.Start(new UserInteractTest());
         }
     }
 }
