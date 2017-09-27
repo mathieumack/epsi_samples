@@ -1,6 +1,7 @@
 ﻿using System;
 using Cours_9;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace FileDownloaderTests
 {
@@ -11,7 +12,12 @@ namespace FileDownloaderTests
         public void TestMethod1()
         {
             FileDownloader downloader = new FileDownloader();
-            downloader.Start(new UserInteractTest());
+
+            // Mocks :
+            Mock<IUserInteract> userInteractMock = new Mock<IUserInteract>();
+            Mock<ISettings> settingsMock = new Mock<ISettings>();
+
+            downloader.Start(userInteractMock.Object, settingsMock.Object);
         }
     }
 }

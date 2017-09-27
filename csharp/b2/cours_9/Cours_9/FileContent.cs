@@ -5,8 +5,7 @@ namespace Cours_9
 {
     public class FileContent
     {
-        private Settings settingsObject;
-        private UserInteract userInteract;
+        private ISettings settingsObject;
 
         public string Name { get; set; }
 
@@ -20,7 +19,7 @@ namespace Cours_9
             }
         }
 
-        public FileContent(Settings settings)
+        public FileContent(ISettings settings)
         {
             settingsObject = settings;
         }

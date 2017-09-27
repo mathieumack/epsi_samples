@@ -9,13 +9,13 @@ namespace Cours_9
     public class FileDownloader
     {
 
-        private Settings settings;
+        private ISettings iSettings;
         private IUserInteract iUserInteract;
 
-        public void Start(IUserInteract userInteract)
+        public void Start(IUserInteract userInteract, ISettings settings)
         {
             iUserInteract = userInteract;
-            settings = new Settings(userInteract);
+            iSettings = settings;
 
             UpdateSaveFolderPath();
             StartNewDownload();
@@ -23,12 +23,12 @@ namespace Cours_9
 
         private void UpdateSaveFolderPath()
         {
-            settings.UpdatePath();
+            iSettings.UpdatePath();
         }
 
         private void StartNewDownload()
         {
-            FileContent file = new FileContent(settings);
+            FileContent file = new FileContent(iSettings);
             iUserInteract.WriteLine("Please enter the file name :");
             file.Name = iUserInteract.ReadLine();
             iUserInteract.WriteLine("Please enter the file uri :");

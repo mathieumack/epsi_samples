@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cours_9
 {
-    public class Settings
+    public class Settings : ISettings
     {
         private IUserInteract userInteractObject;
         public string SavePath { get; internal set; }
