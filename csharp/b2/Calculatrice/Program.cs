@@ -28,7 +28,27 @@ namespace Calculatrice
                     line2 = "+";
                     line3 = line[1];
                 }
-                // TODO : Ajouter ici le traitement pour les autres opérations :
+                else if (line1.Contains("-"))
+                {
+                    string[] line = line1.Split('-');
+                    line1 = line[0];
+                    line2 = "-";
+                    line3 = line[1];
+                }
+                else if (line1.Contains("*"))
+                {
+                    string[] line = line1.Split('*');
+                    line1 = line[0];
+                    line2 = "*";
+                    line3 = line[1];
+                }
+                else if (line1.Contains("/"))
+                {
+                    string[] line = line1.Split('/');
+                    line1 = line[0];
+                    line2 = "/";
+                    line3 = line[1];
+                }
 
                 // Lancement des calculs :
                 try
@@ -36,7 +56,7 @@ namespace Calculatrice
                     value1 = double.Parse(line1);
                     value2 = double.Parse(line3);
 
-                    if (line2 != "+" && line2 != "-")
+                    if (line2 != "+" && line2 != "-" && line2 != "*" && line2 != "/")
                         throw new InvalidOperationException();
 
                     tf = false;
@@ -58,6 +78,18 @@ namespace Calculatrice
                 double result = sous.DoOperation(value1, value2);
                 Console.WriteLine(result);
             }
+            else if (line2 == "*")
+            {
+                Multiplication sous = new Multiplication();
+                double result = sous.DoOperation(value1, value2);
+                Console.WriteLine(result);
+            }
+            else if (line2 == "/")
+            {
+                Division sous = new Division();
+                double result = sous.DoOperation(value1, value2);
+                Console.WriteLine(result);
+            }
 
             Console.ReadLine();
         }
@@ -76,6 +108,22 @@ namespace Calculatrice
         public double DoOperation(double a, double b)
         {
             return a - b;
+        }
+    }
+
+    public class Multiplication
+    {
+        public double DoOperation(double a, double b)
+        {
+            return a * b;
+        }
+    }
+
+    public class Division
+    {
+        public double DoOperation(double a, double b)
+        {
+            return a / b;
         }
     }
 }
