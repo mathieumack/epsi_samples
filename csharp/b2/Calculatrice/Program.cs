@@ -66,28 +66,25 @@ namespace Calculatrice
                     Console.WriteLine("Données invalides");
                 }
             }
+            CalculOperator add = new CalculOperator();
             if (line2 == "+")
             {
-                Addition add = new Addition();
-                double result = add.DoOperation(value1, value2);
+                double result = add.Calcul<Addition>(value1, value2);
                 Console.WriteLine(result);
             }
             else if (line2 == "-")
             {
-                Soustraction sous = new Soustraction();
-                double result = sous.DoOperation(value1, value2);
+                double result = add.Calcul<Soustraction>(value1, value2);
                 Console.WriteLine(result);
             }
             else if (line2 == "*")
             {
-                Multiplication sous = new Multiplication();
-                double result = sous.DoOperation(value1, value2);
+                double result = add.Calcul<Multiplication>(value1, value2);
                 Console.WriteLine(result);
             }
             else if (line2 == "/")
             {
-                Division sous = new Division();
-                double result = sous.DoOperation(value1, value2);
+                double result = add.Calcul<Division>(value1, value2);
                 Console.WriteLine(result);
             }
 
@@ -95,7 +92,21 @@ namespace Calculatrice
         }
     }
 
-    public class Addition
+    public class CalculOperator
+    {
+        public double Calcul<T>(double a, double b) where T : ICalcul, new()
+        {
+            T monOprator = new T();
+            return monOprator.DoOperation(a, b);
+        }
+    }
+
+    public interface ICalcul
+    {
+        double DoOperation(double a, double b);
+    }
+
+    public class Addition : ICalcul
     {
         public double DoOperation(double a, double b)
         {
@@ -103,7 +114,7 @@ namespace Calculatrice
         }
     }
 
-    public class Soustraction
+    public class Soustraction : ICalcul
     {
         public double DoOperation(double a, double b)
         {
@@ -111,7 +122,7 @@ namespace Calculatrice
         }
     }
 
-    public class Multiplication
+    public class Multiplication : ICalcul
     {
         public double DoOperation(double a, double b)
         {
@@ -119,7 +130,7 @@ namespace Calculatrice
         }
     }
 
-    public class Division
+    public class Division : ICalcul
     {
         public double DoOperation(double a, double b)
         {
